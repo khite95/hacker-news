@@ -1,35 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { connect } from 'react-redux';
 import { del, getAll } from '../actions';
-import { Header, Player } from '../components';
+import { Header } from '../components';
 import { useStyles } from '../styles';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import PeopleOutlineOutlinedIcon from '@material-ui/icons/PeopleOutlineOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { Grid } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import {
-  useQuery,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider
-} from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import axios from 'axios';
-import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
-import { Console } from 'node:console';
+
 import { htmlToText } from 'html-to-text';
 
 const RosterPage = (props) => {
@@ -67,14 +52,6 @@ function DisplayPost({ postID }) {
   const [titles, setTitles] = useState(false);
   const classes = useStyles();
   const [fetched, setFetched] = useState(false);
-  // const fetchPost = async (id) => {
-  //   const response = await fetch(
-  //     "http://hacker-news.firebaseio.com/v0/item/" + id + ".json?print=pretty"
-  //   );
-  //   const data = await response.json();
-  //   setTitles(data);
-  //   console.log(data);
-  // };
 
   useEffect(() => {
     setStatus('pending');
@@ -153,14 +130,6 @@ function DisplayComment({ commentID }) {
   const [titles, setTitles] = useState(false);
   const classes = useStyles();
   const [fetched, setFetched] = useState(false);
-  // const fetchPost = async (id) => {
-  //   const response = await fetch(
-  //     "http://hacker-news.firebaseio.com/v0/item/" + id + ".json?print=pretty"
-  //   );
-  //   const data = await response.json();
-  //   setTitles(data);
-  //   console.log(data);
-  // };
 
   useEffect(() => {
     setStatus('pending');
@@ -279,37 +248,24 @@ function HackerPosts() {
 }
 
 function fetchPost(id) {
-  // return axios
-  //   .get(
-  //     "http://hacker-news.firebaseio.com/v0/item/" + id + ".json?print=pretty"
-  //   )
-  //   .then((r) => r.json());
   return window
     .fetch(
-      'http://hacker-news.firebaseio.com/v0/item/' + id + '.json?print=pretty'
+      'https://hacker-news.firebaseio.com/v0/item/' + id + '.json?print=pretty'
     )
     .then((r) => r.json());
 }
 
 function fetchComment(id) {
-  // return axios
-  //   .get(
-  //     "http://hacker-news.firebaseio.com/v0/item/" + id + ".json?print=pretty"
-  //   )
-  //   .then((r) => r.json());
   return window
     .fetch(
-      'http://hacker-news.firebaseio.com/v0/item/' + id + '.json?print=pretty'
+      'https://hacker-news.firebaseio.com/v0/item/' + id + '.json?print=pretty'
     )
     .then((r) => r.json());
 }
 
 function fetchTopPosts() {
-  // return axios
-  //   .get("http://hacker-news.firebaseio.com/v0/topstories.json")
-  //   .then((r) => r.json());
   return window
-    .fetch('http://hacker-news.firebaseio.com/v0/topstories.json')
+    .fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
     .then((r) => r.json());
 }
 
