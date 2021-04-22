@@ -88,7 +88,9 @@ function DisplayPost({ postID }) {
           <CardContent>
             <Typography variant="h8" component="h2">
               {post.title}
-              {console.log(post)}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {post.url}
             </Typography>
             <Typography variant="body1" component="p">
               By {post.by}
@@ -101,10 +103,12 @@ function DisplayPost({ postID }) {
               <React.Fragment>
                 {post.kids.slice(0, 3).map((commentID) => (
                   <Grid
+                    container
                     item
                     key={commentID}
                     direction="column"
-                    justify="flex-start"
+                    xs
+                    zeroMinWidth
                   >
                     <DisplayComment key={commentID} commentID={commentID} />
                   </Grid>
@@ -129,6 +133,8 @@ function DisplayComment({ commentID }) {
   const [error, setError] = useState(null);
   const [titles, setTitles] = useState(false);
   const classes = useStyles();
+  const [commentExists, setCommentExists] = useState(false);
+  const [threadLength, setThreadLength] = useState(3);
   const [fetched, setFetched] = useState(false);
 
   useEffect(() => {
@@ -167,7 +173,11 @@ function DisplayComment({ commentID }) {
             <Typography variant="h8" component="h2">
               {comment.by}
             </Typography>
-            <Typography className={classes.title} color="primary" gutterBottom>
+            <Typography
+              className={classes.title}
+              color="primary"
+              style={{ overflowWrap: 'break-word' }}
+            >
               {comment.text && (
                 <React.Fragment>
                   {htmlToText(comment.text, { wordwrap: null })}
@@ -176,12 +186,14 @@ function DisplayComment({ commentID }) {
             </Typography>
             {comment.kids && (
               <React.Fragment>
-                {comment.kids.slice(0, 2).map((commentID) => (
+                {comment.kids.slice(0, threadLength).map((commentID) => (
                   <Grid
+                    container
                     item
                     key={commentID}
                     direction="column"
-                    justify="flex-start"
+                    xs
+                    zeroMinWidth
                   >
                     <DisplayComment key={commentID} commentID={commentID} />
                   </Grid>
@@ -200,6 +212,8 @@ function HackerPosts() {
   const [posts, setPosts] = useState(null);
   const [error, setError] = useState(null);
   const [fetched, setFetched] = useState(false);
+  const [postAmount, setPostAmount] = useState(7);
+
   const classes = useStyles();
   useEffect(() => {
     setFetched(true);
@@ -231,11 +245,28 @@ function HackerPosts() {
   if (status === 'resolved') {
     return (
       <Container className={classes.cardGrid}>
-        <Grid container spacing={3} direction="column" justify="center">
+        <Grid
+          container
+          item
+          spacing={3}
+          direction="column"
+          justify="flex-start"
+          xs
+          zeroMinWidth
+        >
           {posts && (
             <React.Fragment>
-              {posts.slice(0, 10).map((postID) => (
-                <Grid item key={postID}>
+              {posts.slice(0, postAmount).map((postID) => (
+                <Grid
+                  container
+                  item
+                  key={postID}
+                  alignItems="flex-start"
+                  align-content="flex-start"
+                  direction="column"
+                  xs
+                  zeroMinWidth
+                >
                   <DisplayPost key={postID} postID={postID} />
                 </Grid>
               ))}
