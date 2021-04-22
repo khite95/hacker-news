@@ -1,17 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { App } from './App';
+import { store } from './helpers';
+import { createMuiTheme } from '@material-ui/core';
+import * as serviceWorker from './serviceWorker';
+// Importing the fetch polyfill allows cypress to intercept fetch api requests.
+import 'whatwg-fetch';
+import { ThemeProvider } from '@material-ui/core';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: `"Nunito", "Helvetica", "Arial", sans-serif`,
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500
+  }
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ThemeProvider>,
+  document.getElementById('root') as HTMLElement
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//serviceWorker.unregister();
+
+// Hot Module Replacement
+// if (module.hot) {
+//   module.hot.accept();
+// }

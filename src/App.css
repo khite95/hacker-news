@@ -1,38 +1,78 @@
-.App {
+body {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.header,
+.marketing,
+.footer {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+/* Custom page header */
+
+.header {
+  padding-bottom: 1rem;
+  border-bottom: 0.05rem solid #E5E5E5;
+}
+
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 3rem;
+}
+
+/* Custom page footer */
+
+.footer {
+  padding-top: 1.5rem;
+}
+
+/* Customize container */
+@media ( min-width: 48em ) {
+
+  .container {
+    max-width: 46rem;
+  }
+}
+
+.container-narrow > hr {
+  margin: 2rem 0;
+}
+
+.jumbotron {
   text-align: center;
+  border-bottom: 0.05rem solid #E5E5E5;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.jumbotron .btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.marketing {
+  margin: 3rem 0;
+}
+
+.marketing p + h4 {
+  margin-top: 1.5rem;
+}
+
+@media screen and ( min-width: 48em ) {
+
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .header {
+    margin-bottom: 2rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .jumbotron {
+    border-bottom: 0;
   }
 }
