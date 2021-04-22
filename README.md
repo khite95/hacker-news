@@ -2,11 +2,11 @@
 
 Web Demo:
 
-https://playermanagement.netlify.app/
+https://hackernewsreact.netlify.app/
 
 ## Overview
 
-This is a Hacker News reader built with React and Redux. You can view top posts, comments, and login. 
+This is a Hacker News reader built with React, Typescript, and Redux. You can view top posts, comments, and login. 
 
 ### Running the app
 
